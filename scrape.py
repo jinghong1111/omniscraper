@@ -28,7 +28,7 @@ product_ratings = []
 product_ratings_num = []
 product_link = []
 
-items = wait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, '//div[contains(@class, "s-result-item s-widget s-widget-spacing-large AdHolder s-flex-full-width")]')))
+items = wait(driver, 20).until(EC.presence_of_all_elements_located((By.XPATH, '//div[contains(@class, "s-result-item s-asin")]')))
 for item in items:
     # find name
     name = item.find_element(By.XPATH, './/span[@class="a-size-medium a-color-base a-text-normal"]')
@@ -61,9 +61,9 @@ for item in items:
     product_ratings.append(ratings)
     product_ratings_num.append(str(ratings_num))
     
-    # find link
-    link = item.find_element(By.XPATH, './/a[@class="a-link-normal a-text-normal"]').get_attribute("href")
-    product_link.append(link)
+    # # find link
+    # link = item.find_element(By.XPATH, './/a[@class="a-link-normal a-text-normal"]').get_attribute("href")
+    # product_link.append(link)
 
 driver.quit()
 
@@ -79,4 +79,4 @@ print(product_link)
 
 ## class="a-size-medium a-color-base a-text-normal"
 
-# s-result-item s-widget s-widget-spacing-large AdHolder s-flex-full-width 
+# s-result-item s-widget s-widget-spacing-large AdHolder s-flex-full-width
