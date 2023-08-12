@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd  
+import os 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager(version='114.0.5735.90').install()))
 
 
@@ -104,7 +105,13 @@ def amazon_scrape(item):
     keyword = keyword.replace(' ', '_') 
     csv_name = keyword + '.csv'
     df = pd.DataFrame({'product_name': product_name, 'product_asin': product_asin, 'product_price': product_price, 'product_ratings': product_ratings, 'product_ratings_num': product_ratings_num, 'product_link': product_link, 'product_image': product_image})
-    df.to_csv(csv_name, index=False, encoding='utf-8')
+
+    # export to csv to folder: omniscraper/amazon_result 
+    output_folder = './amazon_result' 
+    os.makedirs(output_folder, exist_ok=True)
+    output_path = os.path.join(output_folder, csv_name) 
+    df.to_csv(output_path, index=False, encoding='utf-8')
+         
 
     ## twotabsearchtextbox 
 
@@ -116,7 +123,8 @@ def amazon_scrape(item):
 def homedepot_scrape(item):
     pass
 if __name__ == '__main__':
-    input = input("Enter the item you want to search: ") 
-    amazon_scrape(input) 
+    # input = input("Enter the item you want to search: ") 
+    # amazon_scrape(input) 
+    amazon_scrape('fresh avocado')
 
     # a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal
