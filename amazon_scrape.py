@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd  
-driver = webdriver.Chrome(service = Service(ChromeDriverManager().install()))
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(version='114.0.5735.90').install()))
 
 
 
@@ -79,17 +79,16 @@ def amazon_scrape(item):
  
         product_link.append(link)
         # look for the HERF link, then replace it with the xpath via find: a-link-normal a-text-normal"  
-        # //*[@id="search"]/div[1]/div[1]/div/span[1]/div[1]/div[17]/div/div/span/div/div/div/div/div[2]/div/div/div/div[3]/div/div[2]/a 
     driver.quit()
 
     # to check data scraped
-    print(product_name)
-    print(product_asin)
-    print(product_price)
-    print(product_ratings)
-    print(product_ratings_num)
-    print(product_link)
-    print(product_image)
+    # print(product_name)
+    # print(product_asin)
+    # print(product_price)
+    # print(product_ratings)
+    # print(product_ratings_num)
+    # print(product_link)
+    # print(product_image)
 
     # check length of each list 
     print("product_name: ", len(product_name))
@@ -112,8 +111,12 @@ def amazon_scrape(item):
     ## class="a-size-medium a-color-base a-text-normal"
 
     # s-result-item s-widget s-widget-spacing-large AdHolder s-flex-full-width
+ 
 
+def homedepot_scrape(item):
+    pass
 if __name__ == '__main__':
-    amazon_scrape('make up tool') 
+    input = input("Enter the item you want to search: ") 
+    amazon_scrape(input) 
 
     # a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal
